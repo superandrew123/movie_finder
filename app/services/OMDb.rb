@@ -1,12 +1,14 @@
-class OMDb
+class OMDB
   class << self
     def search(search_term)
       url = 'https://www.omdbapi.com/'
       conn = Faraday.new(url: url) do |faraday|
         faraday.adapter Faraday.default_adapter
       end
+
       response = conn.get('/',{t: search_term, r: 'json'})
       body = JSON.parse(response.body)
+
       if body['Response'] == 'False'
         movie = Movie.new({
             name: 'No movie found',

@@ -3,13 +3,22 @@ require 'rails_helper'
 require 'test_factory'
 
 describe Movie, :model do
-  before(:all) do
-    create_movies
-  end
+
+  create_movies
+
   after(:all) do
     Movie.destroy_all
   end
-  describe 'Movie.search' do
+
+  describe 'Movie#availability' do
+    the_thing = Movie.search('the thing')[0]
+    it 'checks Netflix availability' do 
+      netflix_availability = the_thing.available?
+      binding.pry
+      expect(netflix_availability).to be(false)
+    end
+  end
+  xdescribe 'Movie.search' do
     it 'returns a movie' do
       the_thing_from_another_world = Movie.search('The Thing From Another World')
       expect(the_thing_from_another_world.length).to be(1)
