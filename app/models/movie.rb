@@ -18,6 +18,5 @@ class Movie < ActiveRecord::Base
   def self.external_search(search_term)
     # reach out to OMDB
     search_data = OMDB.search(search_term)
-    binding.pry
   end
 end

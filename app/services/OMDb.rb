@@ -6,7 +6,17 @@ class OMDB
         faraday.adapter Faraday.default_adapter
       end
       response = conn.get('/',{t: search_term, r: 'json'})
-      movie = self.new_movie(JSON.parse(response.body))
+      body = JSON.parse(response.body)
+      if body['Response'] == 'False'
+        movie = Movie.new({
+            name: 'No movie found',
+            year: 0,
+            description: 'Sorry, friend. Try searching for another spelling.',
+            image: 'error_poster.jpg'
+          })
+      else 
+        movie = self.new_movie(body)
+      end
     end
     def new_movie(movie_data)
       Movie.create({

@@ -9,24 +9,30 @@ describe Movie, :model do
   after(:all) do
     Movie.destroy_all
   end
-  describe 'Movie class methods' do
-    it 'Movie.search returns a movie' do
+  describe 'Movie.search' do
+    it 'returns a movie' do
       the_thing_from_another_world = Movie.search('The Thing From Another World')
       expect(the_thing_from_another_world.length).to be(1)
       expect(the_thing_from_another_world[0].year).to be(1951)
     end
-    it 'Movie.search returns multiple movies' do 
+    it 'returns multiple movies' do 
       movies = Movie.search('thing')
       expect(movies.length).to be(2)
     end
-    it 'Movie.search searches descriptions after titles' do
+    it 'searches descriptions after titles' do
       the_thing = Movie.search('Kurt Russel')
       expect(the_thing.length).to be(1)
       expect(the_thing[0].name).to eq('The Thing')
     end
-    it 'Movie.search reaches to an external API if no movie is found' do
+    it 'reaches to an external API if no movie is found' do
       cast_away = Movie.search('Cast Away')
-      expect(cast_away).to eq('Cast Away')
+      expect(cast_away.name).to eq('Cast Away')
+    end
+    it 'returns "No movies found" if nothing found' do 
+      search_error = Movie.search('fe123ddddJibberish')
+      expect(search_error.name).to eq('No movie found')
     end
   end
+
+
 end
