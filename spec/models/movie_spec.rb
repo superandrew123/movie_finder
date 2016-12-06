@@ -24,5 +24,9 @@ describe Movie, :model do
       expect(the_thing.length).to be(1)
       expect(the_thing[0].name).to eq('The Thing')
     end
+    it 'Movie.search reaches to an external API if no movie is found' do
+      cast_away = Movie.search('Cast Away')
+      expect(cast_away).to eq('Cast Away')
+    end
   end
 end
