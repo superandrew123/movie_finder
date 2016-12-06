@@ -13,9 +13,8 @@ describe Movie, :model do
   describe 'Movie#availability' do
     the_thing = Movie.search('the thing')[0]
     it 'checks Netflix availability' do 
-      netflix_availability = the_thing.available?
-      binding.pry
-      expect(netflix_availability).to be(false)
+      availability = the_thing.available?
+      expect(availability.netflix).to be('Disk available, no streaming.')
     end
   end
   xdescribe 'Movie.search' do

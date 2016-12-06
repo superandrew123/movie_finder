@@ -1,22 +1,30 @@
+# require 'NetflixScraper.rb'
+
 class Movie < ActiveRecord::Base
   before_create :default_last_checked
 
   def available?
     if (Date.today - self.last_checked).to_i > 7
-      self.netflix?
+      # netflix? will check for and set the netflix_availability
+      self.netflix_availability = self.netflix?
       self.last_checked = Date.today
       self.save
     end
+    {
+      netflix: self.netflix_availability
+    }
   end
 
   def netflix?
+    response = Netflix.availability(self.name)
   end
+
 
   def default_last_checked
     self.last_checked = 3.weeks.ago
   end
 
-  # Class methods
+    # Class methods
     def self.search(search_term)
       movies = Movie.search_name(search_term)
       movies.length == 0 ? Movie.external_search(search_term) : movies
