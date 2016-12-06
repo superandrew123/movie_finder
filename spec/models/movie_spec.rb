@@ -33,6 +33,4 @@ describe Movie, :model do
       expect(search_error.name).to eq('No movie found')
     end
   end
-
-
 end
