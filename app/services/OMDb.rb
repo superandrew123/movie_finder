@@ -1,4 +1,4 @@
-class OMDB
+class OMDb
   class << self
     def search(search_term)
       url = 'https://www.omdbapi.com/'

@@ -20,7 +20,8 @@ describe Movie, :model do
       expect(movies.length).to be(2)
     end
     it 'searches descriptions after titles' do
-      the_thing = Movie.search('Kurt Russel')
+      # Need to sort out the logic on when to get here
+      the_thing = Movie.search_description('Kurt Russel')
       expect(the_thing.length).to be(1)
       expect(the_thing[0].name).to eq('The Thing')
     end
