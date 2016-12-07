@@ -4,24 +4,51 @@ class Netflix
   end
 
   def self.availability(title)
-    home_page = @@mechanize.get("http://www.netflix.com")
-    if home_page.at('a.authLinks') != nil
-      Netflix.login
+    page = @@mechanize.get("https://www.netflix.com")
+    if page.at('a.authLinks') != nil
+      Netflix.login(page)
     end
-    # binding.pry
+    Netflix.search(title)
   end
 
-  def self.login
-    login_page = @@mechanize.get("http://www.netflix.com/Login")
-    login_form = login_page.forms[0]
+  private
+    def self.search(title)
+      binding.pry
 
-    email_field = login_form.fields.select {|field| field.name == 'email'}[0]
-    pw_field = login_form.fields.select {|field| field.name == 'password'}[0]
+    end
+    def self.login(page)
+      login_page = @@mechanize.click(page.at('a.authLinks'))
+      login_form = login_page.forms[0]
 
-    email_field.value = Rails.application.secrets.netflix_email
-    pw_field.value = Rails.application.secrets.netflix_pw
-    
+      login_form.field_with(name: 'email').value = Rails.application.secrets.netflix_email
+      login_form.field_with(name: 'password').value = Rails.application.secrets.netflix_pw
 
-    binding.pry
-  end
+      login_data = {
+        email: Rails.application.secrets.netflix_email,
+        password: Rails.application.secrets.netflix_pw,
+        authURL: login_form.field_with(name: 'authURL').value,
+        showState: 'hide',
+        rememberMe: 'true',
+        flow: 'websiteSignUp',
+        mode: 'login',
+        action: 'loginAction',
+        withFields: 'email,password,rememberMe,nextPage'
+      }
+
+      header_data = {
+        'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Encoding' => 'gzip, deflate, br',
+        'Accept-Language' => 'en-US,en;q=0.8',
+        'Cache-Control' => 'max-age=0',
+        'Content-Type' => 'application/x-www-form-urlencoded',
+        'Content-Length' => '246',
+        'Connection' => 'keep-alive',
+        'Host' => 'www.netflix.com',
+        'Origin' => 'https://www.netflix.com',
+        'Referer' => 'https://www.netflix.com/Login',
+        'Upgrade-Insecure-Requests' => '1'
+      }
+
+      @@mechanize.post("https://www.netflix.com/Login", login_data, header_data)
+    end
 end
