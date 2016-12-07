@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161206161940) do
+ActiveRecord::Schema.define(version: 20161207231931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20161206161940) do
     t.string   "image"
     t.string   "netflix_availability", default: "0"
     t.date     "last_checked"
+    t.string   "amazon_availability",  default: "0"
   end
 
 end

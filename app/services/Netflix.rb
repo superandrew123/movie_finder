@@ -1,8 +1,5 @@
-class Netflix
-  @@mechanize = Mechanize.new do |mech|
-    mech.user_agent_alias = 'Mac Safari'
-  end
-
+class Netflix < Scraper
+  
   def self.availability(title)
     page = @@mechanize.get("https://www.netflix.com")
     if page.at('a.authLinks') != nil

@@ -23,4 +23,10 @@ def create_movies
       description: 'Patric Stewart hits aliens.',
       image: 'test.jpg'
     })
+  Movie.create({
+      name: 'Star Trek II: The Wrath of Khan',
+      year: '1982',
+      description: 'William Shatner hits aliens.',
+      image: 'test.jpg'
+    })
 end
