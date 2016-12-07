@@ -16,7 +16,7 @@ class Movie < ActiveRecord::Base
   end
 
   def netflix?
-    response = Netflix.availability(self.name)
+    Netflix.availability(self.name)
   end
 
 

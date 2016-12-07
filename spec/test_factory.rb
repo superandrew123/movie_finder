@@ -17,4 +17,10 @@ def create_movies
       description: 'Will Smith hits aliens.',
       image: 'test.jpg'
     })
+  Movie.create({
+      name: 'Star Trek: Nemesis',
+      year: '2002',
+      description: 'Patric Stewart hits aliens.',
+      image: 'test.jpg'
+    })
 end

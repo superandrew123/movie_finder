@@ -13,15 +13,32 @@ class Netflix
 
   private
     def self.search(title)
-      binding.pry
+      search_url = 'https://www.netflix.com/search?q=' + title
+      search_page = @@mechanize.get(search_url)
+      html = Nokogiri::HTML(search_page.body)
 
+      # If it is available for streaming, it will show in 'div.smallTitleCard'
+      title_cards = html.css('.galleryContent .smallTitleCard')
+      title_cards.each do |card|
+        if title == card.attributes['aria-label'].value
+          return 'Streaming available!'
+        end
+      end
+
+      # If it is available on DVD, it will show up in 
+      suggestions = html.css('div.suggestions li a')
+      suggestions.each do |suggestion|
+        if title == suggestion.text
+          return 'Disk available, no streaming.'
+        end
+      end
+
+      # Big nope from Netflix
+      return "Netflix didn't find it."
     end
     def self.login(page)
       login_page = @@mechanize.click(page.at('a.authLinks'))
       login_form = login_page.forms[0]
-
-      login_form.field_with(name: 'email').value = Rails.application.secrets.netflix_email
-      login_form.field_with(name: 'password').value = Rails.application.secrets.netflix_pw
 
       login_data = {
         email: Rails.application.secrets.netflix_email,

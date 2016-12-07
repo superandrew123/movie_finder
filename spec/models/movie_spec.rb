@@ -11,13 +11,18 @@ describe Movie, :model do
   end
 
   describe 'Movie#availability' do
-    the_thing = Movie.search('the thing')[0]
-    it 'checks Netflix availability' do 
+    it 'checks Netflix availability for a movie on disk only' do 
+      the_thing = Movie.search('the thing')[0]
       availability = the_thing.available?
-      expect(availability.netflix).to be('Disk available, no streaming.')
+      expect(availability[:netflix]).to eq('Disk available, no streaming.')
+    end
+    it 'checks Netflix availability for a movie available for streaming' do 
+      star_trek = Movie.search('star trek')[0]
+      availability = star_trek.available?
+      expect(availability[:netflix]).to eq('Streaming available!')
     end
   end
-  xdescribe 'Movie.search' do
+  describe 'Movie.search' do
     it 'returns a movie' do
       the_thing_from_another_world = Movie.search('The Thing From Another World')
       expect(the_thing_from_another_world.length).to be(1)
