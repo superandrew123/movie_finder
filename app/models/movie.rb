@@ -10,7 +10,8 @@ class Movie < ActiveRecord::Base
       self.save
     end
     {
-      netflix: self.netflix_availability
+      netflix: self.netflix_availability,
+      amazon: self.amazon_availability
     }
   end
 
@@ -18,7 +19,7 @@ class Movie < ActiveRecord::Base
     Netflix.availability(self.name)
   end
   def amazon?
-    Amazon.availability(self.name)
+    Amazon.availability(self.name, self.year)
   end
 
   def default_last_checked

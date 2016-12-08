@@ -29,4 +29,10 @@ def create_movies
       description: 'William Shatner hits aliens.',
       image: 'test.jpg'
     })
+  Movie.create({
+      name: 'Elf',
+      year: '2003',
+      description: 'Will Ferrel hits candy.',
+      image: 'test.jpg'
+    })
 end
