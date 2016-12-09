@@ -1,0 +1,81 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>Movie Finder</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 100%;
+        margin: 0;
+        box-shadow: inset 0px 0px 15px 5px rgba(255,255,255,1);
+        background-color: #f0f0f0;
+      }
+      div#main-content {
+        min-width: 500px;
+      }
+      .row {
+        margin: 0;
+      }
+      p {
+        margin: 0;
+      }
+      #main-title {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 5px;
+      }
+      div#search-container {
+        width: 300px;
+        background-color: rgba(255,255,255,0.5);
+        margin: 5px auto 10px;
+        border: 1px solid #e7e7e7;
+      }
+      #search-image {
+        height: 25px;
+        vertical-align: top;
+        margin: 3px 3px;
+      }
+      #search-field {
+        background-color: transparent;
+        border: 0;
+        font-size: 20px;
+        width: 260px;
+      }
+      p.name {
+        margin-left: 10px;
+        font-size: 12px;
+      }
+      input:focus{
+        outline: none;
+      }
+    </style>
+
+    <!--
+      - JavaScript and HTML must be in separate files: see our Content Security
+      - Policy documentation[1] for details and explanation.
+      -
+      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
+     -->
+    <script src="js/lib/jquery-3.1.1.min.js"></script>
+    <script src="js/main.js"></script>
+  </head>
+  <body>
+    <div id="main-content" class="row">
+      <p id="main-title">Seach for movies. Click on the right one to see availability.</p>
+      <div id="search-container">
+        <img id="search-image" src="search.svg" alt="search icon">
+        <input id="search-field" type="text" placeholder="">
+      </div>
+      <div id="seach-results">
+        
+      </div>
+    </div>
+  </body>
+</html>
+
