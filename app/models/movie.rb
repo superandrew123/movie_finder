@@ -29,7 +29,18 @@ class Movie < ActiveRecord::Base
   # Class methods
   def self.search(search_term)
     movies = Movie.search_name(search_term)
-    movies.length == 0 ? Movie.external_search(search_term) : movies
+    if movies.count == 0
+      movies = Movie.external_search(search_term)
+    end
+
+    movies.collect do |movie|
+      {
+        name: movie.name,
+        year: movie.year,
+        description: movie.description,
+        image: movie.image
+      }
+    end
   end
 
   def self.search_name(search_term)

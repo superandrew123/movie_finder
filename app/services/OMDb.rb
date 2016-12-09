@@ -18,7 +18,9 @@ class OMDB
     else 
       movie = self.new_movie(body)
     end
+    [movie]
   end
+
   def self.new_movie(movie_data)
     Movie.create({
       name: movie_data['Title'],
