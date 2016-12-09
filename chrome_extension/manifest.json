@@ -8,6 +8,7 @@
       "matches": [ "http://*/*", "https://*/*"],
       "js": [
         "js/lib/jquery-3.1.1.min.js",
+        "js/moviefinder.js",
         "js/main.js"
       ]
     }

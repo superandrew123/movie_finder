@@ -2,8 +2,11 @@ MovieFinder = {
   init: function(){
 
   },
-  readInput: function(keyPress){
-    debugger;
+  readInput: function(){
+    var search_text = this.value;
+    if(search_text.length > 2){
+      MovieFinder.search(search_text);
+    }
   },
   search: function(search_term){
     $.ajax({
@@ -13,7 +16,7 @@ MovieFinder = {
       data: {
         q: search_term
       },
-      complete: ()=>{
+      success: function(data){
         debugger;
       }
     });
