@@ -26,6 +26,8 @@ class Movie < ActiveRecord::Base
     self.last_checked = 3.weeks.ago
   end
 
+  
+
   # Class methods
   def self.search(search_term)
     movies = Movie.search_name(search_term)

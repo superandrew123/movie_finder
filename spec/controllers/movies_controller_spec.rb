@@ -15,4 +15,11 @@ describe MoviesController, type: :controller do
     movie_data = JSON.parse(response.body)
     expect(movie_data.length).to eq(2)
   end
+  it '#search returns JSON object' do
+    response = get('search', q: 'the thing')
+    movie_data = JSON.parse(response.body)
+    availability_data = get('availability', q: movie_data[0]['id'])
+    availability_json = JSON.parse(availability_data.body)
+    expect(availability_json['netflix']).to eq('Disk available, no streaming.')
+  end
 end
