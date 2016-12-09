@@ -52,6 +52,12 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     i18n (0.7.0)
+    jasmine (2.3.0)
+      jasmine-core (~> 2.3)
+      phantomjs
+      rack (>= 1.2.1)
+      rake
+    jasmine-core (2.5.2)
     jbuilder (2.6.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -87,6 +93,7 @@ GEM
       mini_portile2 (~> 2.1.0)
     ntlm-http (0.1.1)
     pg (0.19.0)
+    phantomjs (2.1.1.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -174,6 +181,7 @@ PLATFORMS
 
 DEPENDENCIES
   faraday
+  jasmine
   jbuilder (~> 2.0)
   jquery-rails
   mechanize
