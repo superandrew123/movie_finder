@@ -31,10 +31,10 @@
         margin-top: 5px;
       }
       div#search-container {
-        width: 300px;
+        /*width: 300px;*/
         background-color: rgba(255,255,255,0.5);
-        margin: 5px auto 10px;
         border: 1px solid #e7e7e7;
+        display: inline-block;
       }
       #search-image {
         height: 25px;
@@ -45,7 +45,21 @@
         background-color: transparent;
         border: 0;
         font-size: 20px;
-        width: 260px;
+        width: 220px;
+        text-align: center;
+      }
+      #search-form {
+        display: block;
+        margin: 0 auto;
+        width: 350px;
+        padding: 5px 10px;
+      }
+      #search-submit {
+        height: 33px;
+        vertical-align: top;
+        border: 1px solid #c9c9c9;
+        font-size: 16px;
+        background-color: #e7e7e7;
       }
       p.name {
         margin-left: 10px;
@@ -54,19 +68,52 @@
       input:focus{
         outline: none;
       }
+      p.title {
+        font-size: 16px;
+      }
+      p.year {
+        font-size: 14px;
+      }
+      img.search-image {
+        height: 130px;
+        width: 90px;
+        position: absolute;
+      }
+      div.search-data-container {
+        padding-left: 100px;
+      }
+      div.search-result-container {
+        position: relative;
+        min-height: 133px;
+        margin: 0 10px 5px;
+        background: white;
+        border: 2px solid #e7e7e7;
+      }
+      div#loading {
+        text-align: center;
+        height: 0;
+        overflow: hidden;
+      }
+      div#loading > img {
+        height: 150px;
+      }
     </style>
     <script src="js/lib/jquery-3.1.1.min.js"></script>
     <script src="js/moviefinder.js"></script>
   </head>
   <body>
     <div id="main-content" class="row">
-      <p id="main-title">Seach for movies. Click on the right one to see availability.</p>
-      <div id="search-container">
-        <img id="search-image" src="search.svg" alt="search icon">
-        <input id="search-field" type="text" placeholder="">
-      </div>
-      <div id="seach-results">
-        
+      <p id="main-title">Seach for movies. Click on one to see availability.</p>
+        <form id="search-form">
+          <div id="search-container">
+            <img id="search-image" src="search.svg" alt="search icon">
+            <input id="search-field" type="text" placeholder="">
+          </div><!--
+          --><input id="search-submit" type="submit">
+        </form>
+      <div id="search-results"></div>
+      <div id="loading">
+        <img src="loading.gif">
       </div>
     </div>
     <script src="js/main.js"></script>

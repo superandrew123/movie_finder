@@ -35,6 +35,7 @@ class Movie < ActiveRecord::Base
 
     movies.collect do |movie|
       {
+        id: movie.id,
         name: movie.name,
         year: movie.year,
         description: movie.description,

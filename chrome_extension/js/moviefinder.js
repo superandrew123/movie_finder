@@ -1,10 +1,14 @@
 MovieFinder = {
+  search_results: [],
   init: function(){
 
   },
-  readInput: function(){
-    var search_text = this.value;
+  readInput: function(e){
+    e.preventDefault();
+    const search_text = $('#search-field').val();
     if(search_text.length > 2){
+      $("#search-results").html('');
+      $("#loading").animate({'height': '160px'});
       MovieFinder.search(search_text);
     }
   },
@@ -17,8 +21,29 @@ MovieFinder = {
         q: search_term
       },
       success: function(data){
-        debugger;
+        MovieFinder.search_results = data;
+        $("#loading").animate(
+          {'height': '0px'},
+          MovieFinder.buildSearchResults
+        );
       }
     });
+  },
+  buildSearchResults: function(){
+    var data = MovieFinder.search_results
+    var html = '';
+    for(var i = 0; i < data.length; i++){
+      let year = !!data[i].year ? data[i].year : '';
+      html += '<div data-id="' + data[i].id + '" class="search-result-container">';
+        html += '<img class="search-image" src="' + data[i].image + '">'
+        html += '<div class="search-data-container">';
+          html += '<p class="title">' + data[i].name + '</p>';
+          html += '<p class="year">' + year + '</p>';
+          html += '<p class="search-description">' + data[i].description + '</p>';
+          html += '<p class=""></p>';
+        html += '</div>'
+      html += '</div>';
+    }
+    $('#search-results').html(html);
   }
 }

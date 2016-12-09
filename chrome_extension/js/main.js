@@ -1,3 +1,3 @@
-$('#search-field').keyup(MovieFinder.readInput);
+$('#search-form').submit(MovieFinder.readInput);
 
-MovieFinder.init();
+// MovieFinder.init();

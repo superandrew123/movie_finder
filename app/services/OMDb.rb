@@ -11,9 +11,9 @@ class OMDB
     if body['Response'] == 'False'
       movie = Movie.new({
           name: 'No movie found',
-          year: 0,
+          year: '',
           description: 'Sorry, friend. Try searching for another spelling.',
-          image: 'error_poster.jpg'
+          image: 'http://localhost:3000/no_results.jpg'
         })
     else 
       movie = self.new_movie(body)
