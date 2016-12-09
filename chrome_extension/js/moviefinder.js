@@ -1,15 +1,15 @@
 MovieFinder = {
   search_results: [],
-  init: function(){
-
-  },
   readInput: function(e){
     e.preventDefault();
     const search_text = $('#search-field').val();
     if(search_text.length > 2){
       $("#search-results").html('');
-      $("#loading").animate({'height': '160px'});
-      MovieFinder.search(search_text);
+      $("#loading").animate({'height': '160px'},
+        function(){
+          MovieFinder.search(search_text);
+        }
+      );
     }
   },
   search: function(search_term){
@@ -21,16 +21,12 @@ MovieFinder = {
         q: search_term
       },
       success: function(data){
-        MovieFinder.search_results = data;
-        $("#loading").animate(
-          {'height': '0px'},
-          MovieFinder.buildSearchResults
-        );
+        $("#loading").css({'height': '0px'});
+        MovieFinder.buildSearchResults(data);
       }
     });
   },
-  buildSearchResults: function(){
-    var data = MovieFinder.search_results
+  buildSearchResults: function(data){
     var html = '';
     for(var i = 0; i < data.length; i++){
       let year = !!data[i].year ? data[i].year : '';
