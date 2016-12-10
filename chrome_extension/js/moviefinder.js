@@ -80,12 +80,12 @@ MovieFinder = {
       return;
     }
     var availability_html = '';
-    availability_html += '<div class="availability-container col-md-6 netflix">';
-      availability_html += '<div class="logo">Neflix:</div> ';
+    availability_html += '<div class="availability-container col-md-6">';
+      availability_html += '<div class="logo netflix">Neflix:</div> ';
       availability_html += '<div class="status">' + data.netflix + '</div>';
     availability_html += '</div>';
-    availability_html += '<div class="availability-container col-md-6 amazon">';
-      availability_html += '<div class="logo">Amazon:</div> ';
+    availability_html += '<div class="availability-container col-md-6">';
+      availability_html += '<div class="logo amazon">Amazon:</div> ';
       availability_html += '<div class="status">' + data.amazon + '</div>';
     availability_html += '</div>';
     $('#availability-results').html(availability_html);

@@ -88,3 +88,13 @@ div#loading {
 div#loading > img {
   height: 150px;
 }
+.logo {
+  display: inline-block;
+}
+.status {
+  display: inline-block;
+}
+.availability-container {
+  font-size: 16px;
+  padding: 10px 20px;
+}
