@@ -1,0 +1,90 @@
+body {
+  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  font-size: 100%;
+  margin: 0;
+  box-shadow: inset 0px 0px 15px 5px rgba(255,255,255,1);
+  background-color: #f0f0f0;
+}
+div#main-content {
+  min-width: 500px;
+  display: table;
+}
+.row {
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+#main-title {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 5px;
+}
+div#search-container {
+  /*width: 300px;*/
+  background-color: rgba(255,255,255,0.5);
+  border: 1px solid #e7e7e7;
+  display: inline-block;
+}
+#search-image {
+  height: 25px;
+  vertical-align: top;
+  margin: 3px 3px;
+}
+#search-field {
+  background-color: transparent;
+  border: 0;
+  font-size: 20px;
+  width: 220px;
+  text-align: center;
+}
+#search-form {
+  display: block;
+  margin: 0 auto;
+  width: 350px;
+  padding: 5px 10px;
+}
+#search-submit {
+  height: 33px;
+  vertical-align: top;
+  border: 1px solid #c9c9c9;
+  font-size: 16px;
+  background-color: #e7e7e7;
+}
+p.name {
+  margin-left: 10px;
+  font-size: 12px;
+}
+input:focus{
+  outline: none;
+}
+p.title {
+  font-size: 16px;
+}
+p.year {
+  font-size: 14px;
+}
+img.search-image {
+  height: 130px;
+  width: 90px;
+  position: absolute;
+}
+div.search-data-container {
+  padding-left: 100px;
+}
+div.search-result-container {
+  position: relative;
+  min-height: 133px;
+  margin: 0 10px 5px;
+  background: white;
+  border: 2px solid #e7e7e7;
+  cursor: pointer;
+}
+div#loading {
+  text-align: center;
+  height: 0;
+  overflow: hidden;
+}
+div#loading > img {
+  height: 150px;
+}
