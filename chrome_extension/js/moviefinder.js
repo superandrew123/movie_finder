@@ -1,10 +1,14 @@
 MovieFinder = {
   search_results: [],
+  init: function(){
+    $('#search-results').html('');
+    $('#availability-results').html('');
+  },
   readInput: function(e){
+    MovieFinder.init();
     e.preventDefault();
     const search_text = $('#search-field').val();
     if(search_text.length > 2){
-      $("#search-results").html('');
       $("#loading").animate({'height': '160px'},
         function(){
           MovieFinder.search(search_text);
@@ -44,7 +48,6 @@ MovieFinder = {
       html += '</div>';
     }
     $('#search-results').html(html);
-    $('#availability-results').html('');
     $('.search-result-container').click(MovieFinder.availabilityRequest);
   },
   availabilityRequest: function(event){

@@ -22,11 +22,16 @@ class OMDB
   end
 
   def self.new_movie(movie_data)
-    Movie.create({
-      name: movie_data['Title'],
-      year: movie_data['Year'],
-      description: movie_data['Plot'],
-      image: movie_data['Poster']
-    })
+    movie = Movie.find_by(imdb_id: movie_data['imdbID'])
+    if movie == nil
+      movie = Movie.create({
+        name: movie_data['Title'],
+        year: movie_data['Year'],
+        description: movie_data['Plot'],
+        image: movie_data['Poster'],
+        imdb_id: movie_data['imdbID']
+      })
+    end
+    movie
   end
 end
