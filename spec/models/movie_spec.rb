@@ -4,7 +4,7 @@ require 'test_factory'
 
 describe Movie, :model do
 
-  xdescribe 'Movie#availability' do
+  describe 'Movie#availability' do
     it 'checks Netflix for a movie on disk only' do 
       the_thing = Movie.search('the thing')[0]
       availability = the_thing.available?
@@ -48,15 +48,15 @@ describe Movie, :model do
       # Need to sort out the logic on when to get here
       the_thing = Movie.search_description('Kurt Russel')
       expect(the_thing.count).to be(1)
-      expect(the_thing[0][:name]).to eq('The Thing')
+      expect(the_thing[0][:title]).to eq('The Thing')
     end
     it 'reaches to an external API if no movie is found' do
       cast_away = Movie.search('Cast Away')
-      expect(cast_away[0][:name]).to eq('Cast Away')
+      expect(cast_away[0][:title]).to eq('Cast Away')
     end
     it 'returns "No movies found" if nothing found' do 
       search_error = Movie.search('fe123ddddJibberish')
-      expect(search_error[0][:name]).to eq('No movie found')
+      expect(search_error[0][:title]).to eq('No movie found')
     end
   end
 end

@@ -16,10 +16,10 @@ class Movie < ActiveRecord::Base
   end
 
   def netflix?
-    Netflix.availability(self.name)
+    Netflix.availability(self.title)
   end
   def amazon?
-    Amazon.availability(self.name, self.year)
+    Amazon.availability(self.title, self.year)
   end
 
   def default_last_checked
@@ -29,25 +29,28 @@ class Movie < ActiveRecord::Base
   
 
   # Class methods
-  def self.search(search_term)
-    movies = Movie.search_name(search_term)
+  def self.search(search_term, return_hash = false)
+    movies = Movie.search_title(search_term)
     if movies.count == 0
       movies = Movie.external_search(search_term)
     end
-
-    movies.collect do |movie|
-      {
-        id: movie.id,
-        name: movie.name,
-        year: movie.year,
-        description: movie.description,
-        image: movie.image
-      }
+    if return_hash 
+      return movies.collect do |movie|
+        {
+          id: movie.id,
+          title: movie.title,
+          year: movie.year,
+          description: movie.description,
+          image: movie.image
+        }
+      end
+    else
+      return movies
     end
   end
 
-  def self.search_name(search_term)
-    Movie.where('lower(name) like ?', '%' + search_term.downcase + '%')
+  def self.search_title(search_term)
+    Movie.where('lower(title) like ?', '%' + search_term.downcase + '%')
   end
 
   def self.search_description(search_term)
@@ -56,6 +59,6 @@ class Movie < ActiveRecord::Base
 
   def self.external_search(search_term)
     # reach out to OMDB
-    search_data = OMDB.search(search_term)
+    search_data = TMDB.search(search_term)
   end
 end

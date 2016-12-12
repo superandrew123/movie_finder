@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   def search
     # Return the movies based on a search term
     search_term = search_params
-    movies = Movie.search(search_term)
+    movies = Movie.search(search_term, true)
     render json: movies
   end
 

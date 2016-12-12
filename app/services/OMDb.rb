@@ -10,7 +10,7 @@ class OMDB
 
     if body['Response'] == 'False'
       movie = Movie.new({
-          name: 'No movie found',
+          title: 'No movie found',
           year: '',
           description: 'Sorry, friend. Try searching for another spelling.',
           image: 'http://localhost:3000/no_results.jpg'
@@ -25,7 +25,7 @@ class OMDB
     movie = Movie.find_by(imdb_id: movie_data['imdbID'])
     if movie == nil
       movie = Movie.create({
-        name: movie_data['Title'],
+        title: movie_data['Title'],
         year: movie_data['Year'],
         description: movie_data['Plot'],
         image: movie_data['Poster'],
