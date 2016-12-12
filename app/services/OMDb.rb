@@ -10,7 +10,7 @@ class OMDB
 
     if body['Response'] == 'False'
       movie = Movie.new({
-          title: 'No movie found',
+          title: 'No movies found',
           year: '',
           description: 'Sorry, friend. Try searching for another spelling.',
           image: 'http://localhost:3000/no_results.jpg'

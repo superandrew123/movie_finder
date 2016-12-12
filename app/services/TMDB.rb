@@ -19,6 +19,14 @@ class TMDB
       return TMDB.search(search_term)
     end
     data = JSON.parse(response.body)['results']
+    if data.length == 0
+      return [Movie.new({
+          title: 'No movies found',
+          year: '',
+          description: 'Sorry, friend. Try searching for another spelling.',
+          image: 'http://localhost:3000/no_results.jpg'
+        })]
+    end
     movies_raw = TMDB.parse_response(data)
     movies = TMDB.create_movies(movies_raw)
   end

@@ -56,7 +56,7 @@ describe Movie, :model do
     end
     it 'returns "No movies found" if nothing found' do 
       search_error = Movie.search('fe123ddddJibberish')
-      expect(search_error[0][:title]).to eq('No movie found')
+      expect(search_error[0][:title]).to eq('No movies found')
     end
   end
 end

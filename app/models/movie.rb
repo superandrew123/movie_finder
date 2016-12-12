@@ -26,8 +26,6 @@ class Movie < ActiveRecord::Base
     self.last_checked = 3.weeks.ago
   end
 
-  
-
   # Class methods
   def self.search(search_term, return_hash = false)
     movies = Movie.search_title(search_term)
@@ -58,7 +56,7 @@ class Movie < ActiveRecord::Base
   end
 
   def self.external_search(search_term)
-    # reach out to OMDB
+    # reach out to TMDB
     search_data = TMDB.search(search_term)
   end
 end
