@@ -7,6 +7,11 @@ class MoviesController < ApplicationController
     render json: movies
   end
 
+  def expand_search
+    movies = Movie.hash_data(TMDB.search(search_params))
+    render json: movies
+  end
+
   def availability
     # Return availability
     movie = Movie.find_by(id: availability_params)

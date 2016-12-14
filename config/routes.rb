@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get '/search' => 'movies#search'
   get '/availability' => 'movies#availability'
+  get '/expand_search' => 'movies#expand_search'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

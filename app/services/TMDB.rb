@@ -64,7 +64,7 @@ class TMDB
               description: movie_temp[:description],
               year: movie_temp[:year],
               release_date: movie_temp[:release_date],
-              image: movie_temp[:image],
+              image: OMDB.get_poster(movie_temp[:title]),
               tmdb_id: movie_temp[:tmdb_id]
             )
         end

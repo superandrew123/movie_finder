@@ -33,14 +33,36 @@ MovieFinder = {
       }
     });
   },
+  expandSearch: function(e){
+    e.preventDefault();
+    $("#loading").animate({'height': '160px'}, function(){
+      $.ajax({
+        method: 'get', 
+        dataType: 'json', 
+        url: 'http://localhost:3000/expand_search',
+        data: {
+          q: $('#search-field').val()
+        },
+        success: function(data){
+          $("#loading").css({'height': '0px'});
+          MovieFinder.buildSearchResults(data);
+        },
+        failure: function(){
+          console.log('search failure');
+        }
+      });
+    });
+  },
   buildSearchResults: function(data){
     var html = '';
+    html += '<p class="search-more">Don\'t see your movie? <a class="expand-search">Click here</a> to expand your search.</p>';
     for(var i = 0; i < data.length; i++){
-      let year = !!data[i].year ? data[i].year : '';
+      var year = !!data[i].year ? data[i].year : '';
+      var image_src = !!data[i].image ? data[i].image : 'http://localhost:3000/no_results.jpg';
       html += '<div data-id="' + data[i].id + '" class="search-result-container">';
-        html += '<img class="search-image" src="' + data[i].image + '">'
+        html += '<img class="search-image" src="' + image_src + '">';
         html += '<div class="search-data-container">';
-          html += '<p class="title">' + data[i].name + '</p>';
+          html += '<p class="title">' + data[i].title + '</p>';
           html += '<p class="year">' + year + '</p>';
           html += '<p class="search-description">' + data[i].description + '</p>';
           html += '<p class=""></p>';
@@ -48,6 +70,7 @@ MovieFinder = {
       html += '</div>';
     }
     $('#search-results').html(html);
+    $('.expand-search').click(MovieFinder.expandSearch);
     $('.search-result-container').click(MovieFinder.availabilityRequest);
   },
   availabilityRequest: function(event){

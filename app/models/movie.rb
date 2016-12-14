@@ -32,18 +32,22 @@ class Movie < ActiveRecord::Base
     if movies.count == 0
       movies = Movie.external_search(search_term)
     end
-    if return_hash 
-      return movies.collect do |movie|
-        {
-          id: movie.id,
-          title: movie.title,
-          year: movie.year,
-          description: movie.description,
-          image: movie.image
-        }
-      end
+    if return_hash
+      return Movie.hash_data(movies)
     else
       return movies
+    end
+  end
+
+  def self.hash_data(movies)
+    return movies.collect do |movie|
+      {
+        id: movie.id,
+        title: movie.title,
+        year: movie.year,
+        description: movie.description,
+        image: movie.image
+      }
     end
   end
 
