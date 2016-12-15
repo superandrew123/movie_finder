@@ -20,7 +20,7 @@ MovieFinder = {
     $.ajax({
       method: 'get', 
       dataType: 'json', 
-      url: 'http://localhost:3000/search',
+      url: 'http://moviefinder.amiksch.com/search',
       data: {
         q: search_term
       },
@@ -39,7 +39,7 @@ MovieFinder = {
       $.ajax({
         method: 'get', 
         dataType: 'json', 
-        url: 'http://localhost:3000/expand_search',
+        url: 'http://moviefinder.amiksch.com/expand_search',
         data: {
           q: $('#search-field').val()
         },
@@ -58,7 +58,7 @@ MovieFinder = {
     html += '<p class="search-more">Don\'t see your movie? <a class="expand-search">Click here</a> to expand your search.</p>';
     for(var i = 0; i < data.length; i++){
       var year = !!data[i].year ? data[i].year : '';
-      var image_src = !!data[i].image ? data[i].image : 'http://localhost:3000/no_results.jpg';
+      var image_src = !!data[i].image ? data[i].image : 'http://moviefinder.amiksch.com/no_results.jpg';
       html += '<div data-id="' + data[i].id + '" class="search-result-container">';
         html += '<img class="search-image" src="' + image_src + '">';
         html += '<div class="search-data-container">';
@@ -81,7 +81,7 @@ MovieFinder = {
       $.ajax({
         method: 'get',
         dataType: 'json',
-        url: 'http://localhost:3000/availability',
+        url: 'http://moviefinder.amiksch.com/availability',
         data: {
           q: movie_id
         },

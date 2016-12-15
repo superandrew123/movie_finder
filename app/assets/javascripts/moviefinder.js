@@ -9,7 +9,7 @@ MovieFinder = {
     $.ajax({
       method: 'get', 
       dataType: 'json', 
-      url: 'http://localhost:3000/search',
+      url: 'http://moviefinder.amiksch.com/search',
       data: {
         q: search_term
       },

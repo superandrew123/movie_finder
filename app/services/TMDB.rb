@@ -24,7 +24,7 @@ class TMDB
           title: 'No movies found',
           year: '',
           description: 'Sorry, friend. Try searching for another spelling.',
-          image: 'http://localhost:3000/no_results.jpg'
+          image: 'http://moviefinder.amiksch/no_results.jpg'
         })]
     end
     movies_raw = TMDB.parse_response(data)
