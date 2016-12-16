@@ -1,4 +1,7 @@
 class Netflix < Scraper
+  @@mechanize = Mechanize.new do |mech|
+    mech.user_agent_alias = 'Mac Safari'
+  end
   
   def self.availability(title)
     page = @@mechanize.get("https://www.netflix.com")
