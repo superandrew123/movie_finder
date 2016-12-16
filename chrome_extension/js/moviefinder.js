@@ -58,7 +58,7 @@ MovieFinder = {
     html += '<p class="search-more">Don\'t see your movie? <a class="expand-search">Click here</a> to expand your search.</p>';
     for(var i = 0; i < data.length; i++){
       var year = !!data[i].year ? data[i].year : '';
-      var image_src = !!data[i].image ? data[i].image : 'http://moviefinder.amiksch.com/no_results.jpg';
+      var image_src = !!data[i].image ? data[i].image : 'icon128.jpg';
       html += '<div data-id="' + data[i].id + '" class="search-result-container">';
         html += '<img class="search-image" src="' + image_src + '">';
         html += '<div class="search-data-container">';
