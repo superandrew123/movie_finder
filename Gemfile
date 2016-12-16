@@ -36,7 +36,7 @@ gem 'mechanize'
 
 gem 'figaro'
 gem 'puma'
-gem 'capistrano-rails-console', require: false
+gem 'capistrano-rails-console'
 
 group :development do
   gem 'capistrano'

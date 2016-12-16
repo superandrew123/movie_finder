@@ -58,7 +58,7 @@ MovieFinder = {
     html += '<p class="search-more">Don\'t see your movie? <a class="expand-search">Click here</a> to expand your search.</p>';
     for(var i = 0; i < data.length; i++){
       var year = !!data[i].year ? data[i].year : '';
-      var image_src = !!data[i].image ? data[i].image : 'icon128.jpg';
+      var image_src = !!data[i].image ? data[i].image : 'icon128.png';
       html += '<div data-id="' + data[i].id + '" class="search-result-container">';
         html += '<img class="search-image" src="' + image_src + '">';
         html += '<div class="search-data-container">';
@@ -107,10 +107,12 @@ MovieFinder = {
       availability_html += '<div class="logo netflix">Neflix:</div> ';
       availability_html += '<div class="status">' + data.netflix + '</div>';
     availability_html += '</div>';
-    availability_html += '<div class="availability-container col-md-6">';
-      availability_html += '<div class="logo amazon">Amazon:</div> ';
-      availability_html += '<div class="status">' + data.amazon + '</div>';
-    availability_html += '</div>';
+    if(data.amazon != 'Error'){
+      availability_html += '<div class="availability-container col-md-6">';
+        availability_html += '<div class="logo amazon">Amazon:</div> ';
+        availability_html += '<div class="status">' + data.amazon + '</div>';
+      availability_html += '</div>';
+    }
     $('#availability-results').html(availability_html);
   }
 }
