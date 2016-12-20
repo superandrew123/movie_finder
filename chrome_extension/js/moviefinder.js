@@ -7,7 +7,7 @@ MovieFinder = {
   readInput: function(e){
     MovieFinder.init();
     e.preventDefault();
-    const search_text = $('#search-field').val();
+    var search_text = $('#search-field').val();
     if(search_text.length > 2){
       $("#loading").animate({'height': '160px'},
         function(){
@@ -98,7 +98,7 @@ MovieFinder = {
   buildAvailabilityResults: function(data){
     $("#loading").css({'height': '0px'});
     if(!!data['error']){
-      let error_html = '<p class="availability-error">Error: ' + data['error'] + '</p>';
+      var error_html = '<p class="availability-error">Error: ' + data['error'] + '</p>';
       $('#availability-results').html(error_html)
       return;
     }
