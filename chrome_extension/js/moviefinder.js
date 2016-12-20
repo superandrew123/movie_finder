@@ -99,7 +99,7 @@ MovieFinder = {
     $("#loading").css({'height': '0px'});
     if(!!data['error']){
       var error_html = '<p class="availability-error">Error: ' + data['error'] + '</p>';
-      $('#availability-results').html(error_html)
+      $('#availability-results').html(error_html);
       return;
     }
     var availability_html = '';
