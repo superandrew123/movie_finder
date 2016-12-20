@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  def index 
+  end
   
   def search
     # Return the movies based on a search term

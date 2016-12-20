@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'movies#index'
   get '/search' => 'movies#search'
   get '/availability' => 'movies#availability'
   get '/expand_search' => 'movies#expand_search'
